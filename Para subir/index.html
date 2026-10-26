@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1a0f0c">
+  <title>Feliz Cumple Mai</title>
+  <meta name="description" content="El gran show de Mai: una función única con su galería de fotos y videos.">
+  <link rel="icon" href="img/escena/torta.png">
+  <link rel="apple-touch-icon" href="img/escena/torta.png">
+
+  <!-- Adobe Fonts (rosewood-std, rosewood-std-fill, courier-new): reemplaza TU_KIT por el ID de tu proyecto web -->
+  <!-- <link rel="stylesheet" href="https://use.typekit.net/TU_KIT.css"> -->
+
+  <!-- Respaldo mientras no esté el kit de Adobe -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Rye&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bloqueado">
+  <canvas id="confeti" aria-hidden="true"></canvas>
+
+  <!-- ===== Antesala: carga y telón ===== -->
+  <div class="antesala" id="antesala">
+    <div class="cortina izq"></div>
+    <div class="cortina der"></div>
+    <div class="boleteria">
+      <img class="boleteria-cartel" src="img/escena/cartel.png" alt="Circus">
+      <div class="boleto">
+        <div class="boleto-video">
+          <video src="img/videos/baile-tunel.mp4" autoplay muted loop playsinline preload="auto"></video>
+        </div>
+        <p class="boleto-tipo">Entrada a la gorra</p>
+        <p class="boleto-linea">Admite una · Invitada de honor</p>
+        <p class="boleto-nombre rotulo" data-texto="Mai">Mai</p>
+        <p class="boleto-estado" id="estadoCarga" aria-live="polite">Afinando la orquesta… 0%</p>
+        <button class="btn" id="abrirTelon" type="button" hidden>Pasen y vean ✦</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Presentación ===== -->
+  <header class="escena funcion" id="inicio">
+    <img class="deco deco-luna" src="img/escena/deco-luna.png" alt="" aria-hidden="true">
+    <img class="deco deco-sol" src="img/escena/deco-sol.png" alt="" aria-hidden="true">
+
+    <!-- Artistas en cuerda, por fuera del telón (pantallas anchas) -->
+    <div class="personaje p-cuerdista solo-ancho" data-entrada="arriba" style="--d:.9s"><img class="mov-columpio" src="img/escena/cuerdista.png" alt=""></div>
+    <div class="personaje p-cuerdista-mujer solo-ancho" data-entrada="arriba" style="--d:1.1s"><img class="mov-columpio lento" src="img/escena/cuerdista-mujer.png" alt=""></div>
+
+    <div class="escenario">
+      <div class="foco" aria-hidden="true"></div>
+      <img class="telon" src="img/escena/telon.png" alt="">
+      <div class="personaje p-trapecista" data-entrada="arriba" style="--d:.5s"><img class="mov-columpio" src="img/escena/trapecista.png" alt=""></div>
+      <div class="personaje p-acrobatas" data-entrada="arriba" style="--d:.7s"><img class="mov-columpio lento" src="img/escena/acrobatas-1.png" alt=""></div>
+      <div class="cenefa personaje" data-entrada="pop" style="--d:.15s">
+        <img src="img/escena/cenefa.png" alt="">
+        <h1 class="cenefa-texto" aria-label="Feliz Cumple Mai">
+          <span class="rotulo" data-texto="Feliz Cumple" aria-hidden="true">Feliz Cumple</span>
+          <span class="rotulo grande" data-texto="Mai" aria-hidden="true">Mai</span>
+        </h1>
+      </div>
+    </div>
+
+    <div class="pista">
+      <div class="personaje p-aro solo-ancho" data-entrada="izquierda" style="--d:1.2s"><img class="mov-balanceo" src="img/escena/aro.png" alt=""></div>
+      <div class="personaje p-elefante" data-entrada="izquierda" style="--d:.9s"><img class="mov-caminar" src="img/escena/elefante.png" alt="Elefante de circo"></div>
+      <div class="personaje p-mono" data-entrada="pop" style="--d:1.4s"><img class="mov-rebote" src="img/escena/mono.png" alt="Mono maestro de ceremonias"></div>
+      <div class="personaje p-tres-payasos" data-entrada="derecha" style="--d:1.1s"><img class="mov-balanceo" src="img/escena/tres-payasos.png" alt="Tres payasos acróbatas"></div>
+      <div class="personaje p-mancuernas solo-ancho" data-entrada="derecha" style="--d:1.3s"><img class="mov-rebote lento" src="img/escena/mancuernas.png" alt=""></div>
+    </div>
+
+    <div class="anuncio">
+      <p class="presenta">Función única · Una sola noche</p>
+      <p class="texto">Damas y caballeros, niñas y niños: esta noche sube al escenario la artista más querida del variété. Acrobacias, risas y números de riesgo en honor a su cumpleaños.</p>
+      <div class="acciones">
+        <a class="btn" href="#primer-acto">Ver el Primer Acto</a>
+        <button class="btn btn-claro" id="btnAplausos" type="button">¡Aplausos! 👏</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Desfile de músicos -->
+  <div class="marquesina" aria-hidden="true">
+    <div class="marquesina-pista">
+      <span>★ Pasen y vean ★ Gran variété ★ Primer número ★ Función única ★ Artista principal: Mai ★ Entrada a la gorra </span>
+      <span>★ Pasen y vean ★ Gran variété ★ Primer número ★ Función única ★ Artista principal: Mai ★ Entrada a la gorra </span>
+    </div>
+    <img class="desfile" src="img/escena/musicos.png" alt="">
+  </div>
+
+  <main>
+    <!-- ===== Primer Acto: galería ===== -->
+    <section class="escena acto" id="primer-acto">
+      <div class="personaje p-cuerdista-acto" data-entrada="arriba" style="--d:.2s"><img class="mov-columpio lento" src="img/escena/cuerdista-mujer.png" alt=""></div>
+      <div class="personaje p-aro-acto" data-entrada="derecha" style="--d:.4s"><img class="mov-balanceo" src="img/escena/aro.png" alt=""></div>
+
+      <div class="acto-encabezado">
+        <p class="antetitulo">Programa de la noche · Acto I</p>
+        <h2 class="rotulo titulo-seccion" data-texto="Primer Acto">Primer Acto</h2>
+        <p class="bajada">Retratos, acrobacias y números de riesgo de nuestra artista principal. Tocá cualquier cuadro para verlo en el escenario.</p>
+      </div>
+      <div class="muro" id="muro"></div>
+    </section>
+
+    <!-- ===== Gran Final: torta ===== -->
+    <section class="escena final" id="gran-final">
+      <div class="personaje p-acrobatas-final" data-entrada="arriba" style="--d:.3s"><img class="mov-columpio" src="img/escena/acrobatas-2.png" alt=""></div>
+      <p class="antetitulo">Acto II · Gran final</p>
+      <h2 class="rotulo titulo-seccion" data-texto="Pedí un deseo">Pedí un deseo</h2>
+      <p class="bajada">Redoble de tambores… Cerrá los ojos, pensá fuerte y soplá. El público contiene la respiración.</p>
+      <div class="torta-escena">
+        <div class="personaje p-payasos" data-entrada="izquierda" style="--d:.5s"><img class="mov-balanceo" src="img/escena/payasos.png" alt=""></div>
+        <div class="torta" id="torta">
+          <img src="img/escena/torta.png" alt="Torta de cumpleaños con forma de carpa de circo y el nombre Mai">
+          <i class="llama ll1" aria-hidden="true"></i>
+          <i class="llama ll2" aria-hidden="true"></i>
+          <i class="humo hu1" aria-hidden="true"></i>
+          <i class="humo hu2" aria-hidden="true"></i>
+        </div>
+        <div class="personaje p-mancuernas-final" data-entrada="derecha" style="--d:.7s"><img class="mov-rebote lento" src="img/escena/mancuernas.png" alt=""></div>
+      </div>
+      <div class="banda">
+        <div class="personaje p-musicos-final" data-entrada="izquierda" style="--d:.9s">
+          <img class="mov-rebote" src="img/escena/musicos.png" alt="Músicos de la banda del circo">
+          <span class="nota n1" aria-hidden="true">♪</span>
+          <span class="nota n2" aria-hidden="true">♫</span>
+          <span class="nota n3" aria-hidden="true">♪</span>
+        </div>
+      </div>
+      <button class="btn btn-claro" id="soplar" type="button">Soplar las velas</button>
+      <p class="deseo-mensaje" id="deseoMensaje" aria-live="polite"></p>
+    </section>
+
+    <!-- ===== Carta ===== -->
+    <section class="escena carta-escena" id="palabras">
+      <img class="ornamento" src="img/escena/deco-escorpio.png" alt="" aria-hidden="true">
+      <article class="carta">
+        <img class="recorte" src="img/escena/deco-escorpio-diario.png" alt="Recorte de diario del horóscopo de Escorpio">
+        <p class="antetitulo">Palabras del</p>
+        <h2 class="rotulo titulo-carta" data-texto="Maestro de Ceremonias">Maestro de Ceremonias</h2>
+        <!-- Personaliza este mensaje -->
+        <p>Querida Mai:</p>
+        <p>En este circo no hay red de seguridad, pero te tenemos a vos: la artista que convierte cualquier día en función de gala. Gracias por las risas, los planes improvisados y por animarte siempre al número más arriesgado.</p>
+        <p>Que este nuevo año venga cargado de aplausos, aventuras y muchas funciones más juntas.</p>
+        <p class="firma">¡Feliz cumple! <em>— El Maestro de Ceremonias</em></p>
+        <img class="luna-firma" src="img/escena/deco-luna-estrellas.png" alt="" aria-hidden="true">
+      </article>
+    </section>
+  </main>
+
+  <footer class="escena pie" id="fin">
+    <div class="personaje p-cuerdista-pie" data-entrada="arriba" style="--d:.2s"><img class="mov-columpio" src="img/escena/cuerdista.png" alt=""></div>
+    <img class="pie-cartel" src="img/escena/cartel.png" alt="Circus">
+    <p class="rotulo titulo-pie" data-texto="Fin de la función">Fin de la función</p>
+    <p class="pie-texto">Gracias por venir. Esta función se pagó a la gorra… con abrazos.</p>
+    <a class="pie-volver" href="#inicio">Volver a la primera fila ↑</a>
+  </footer>
+
+  <!-- ===== Visor ===== -->
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="En escena" hidden>
+    <span class="visor-contador" id="visorContador"></span>
+    <button class="visor-cerrar" id="visorCerrar" type="button" aria-label="Cerrar">✕</button>
+    <button class="visor-nav anterior" id="visorAnterior" type="button" aria-label="Número anterior">‹</button>
+    <figure class="visor-figura">
+      <div class="visor-medio" id="visorMedio"></div>
+      <figcaption class="visor-placa">
+        <span class="num" id="visorNum"></span>
+        <strong id="visorTitulo"></strong>
+        <em id="visorNota"></em>
+      </figcaption>
+    </figure>
+    <button class="visor-nav siguiente" id="visorSiguiente" type="button" aria-label="Número siguiente">›</button>
+  </div>
+
+  <audio id="audioRedoble" src="img/audio/redoble.mp3" preload="auto"></audio>
+  <audio id="audioCumple" src="img/audio/feliz-cumple.mp3" preload="metadata"></audio>
+
+  <script src="media.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
